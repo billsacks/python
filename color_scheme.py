@@ -44,13 +44,22 @@ class ColorScheme:
         for color in self._colors:
             print("{:16}: {}".format(color, self._colors[color]))
 
-    def set_color(self, color, hex_value):
+    def set_color(self, color, hex_value, verbose=True):
         """
         Add or change a color with the given name
         
         hex_value should be a string of the form '#123456'
         """
+        if verbose and color in self._colors:
+            print("Before: {}".format(self.get_color(color)))
+            self.contrasts(color)
+            print("")
+
         self._colors[color] = hex_value
+
+        if verbose:
+            print("After : {}".format(self.get_color(color)))
+            self.contrasts(color)
 
     def get_color(self, color):
         return self._colors[color]
@@ -84,6 +93,6 @@ class ColorScheme:
 
         for one_color in against:
             print("{:16}: {}".format(one_color,
-                                  diff_cie2000(color_hex, self._colors[one_color])))
+                                     diff_cie2000(color_hex, self._colors[one_color])))
 
     
