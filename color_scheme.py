@@ -42,7 +42,7 @@ class ColorScheme:
 
     def print_colors(self):
         for color in self._colors:
-            print("{}: {}".format(color, self._colors[color]))
+            print("{:16}: {}".format(color, self._colors[color]))
 
     def set_color(self, color, hex_value):
         """
@@ -83,7 +83,7 @@ class ColorScheme:
             against = self._colors.keys()
 
         for one_color in against:
-            print("{}: {}".format(one_color,
+            print("{:16}: {}".format(one_color,
                                   diff_cie2000(color_hex, self._colors[one_color])))
 
     
