@@ -15,8 +15,8 @@ class ColorAdjuster:
     def adjust_hex(self, orig_hex):
         """Given an original hex value, return the adjusted value
 
-        If the adjusted value would have r, g, or b exceeding 1 (i.e., 255), adjust
-        everything downwards by a fixed amount.
+        If the adjusted value would have r, g, or b exceeding 1 (i.e., 255), raises an
+        exception.
         """
 
         orig_color = sRGBColor.new_from_rgb_hex(orig_hex)
@@ -26,7 +26,7 @@ class ColorAdjuster:
 
         max_rgb = np.max(new_rgb)
         if max_rgb > 1:
-            new_rgb = new_rgb / max_rgb
+            raise RuntimeError("Adjusted rgb has a value exceeding 1")
 
         new_color = sRGBColor(rgb_r = new_rgb[0],
                               rgb_g = new_rgb[1],
